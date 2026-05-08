@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Toriqul",
+    "email": "toriqul@gmail.com",
+    "phone": "014063146",
+    "password": "123456",
+    "age": 24
+  },
+  {
+    "id": 2,
+    "name": "Safin",
+    "email": "safin@gmail.com",
+    "phone": "017063846",
+    "password": "123456",
+    "age": 24
+  },
+  {
+    "id": 3,
+    "name": "jainab",
+    "email": "afia@gmail.com",
+    "phone": "01307346",
+    "password": "123456",
+    "age": 21
+  },
+  {
+    "id": 4,
+    "name": "Shaharin",
+    "email": "shaharin@gmail.com",
+    "phone": "015067846",
+    "password": "123456",
+    "age": 22
+  },
+  {
+    "id": 5,
+    "name": "Sumaiya",
+    "email": "babli@gmail.com",
+    "phone": "01622846",
+    "password": "123456",
+    "age": 23
+  }
+
+
+]

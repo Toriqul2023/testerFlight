@@ -12,8 +12,11 @@ import java.net.InetSocketAddress;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-      HttpServer server= HttpServer.create(new InetSocketAddress(9090),0);
-      server.createContext("/user",new userController());
-      server.start();
+        String portStr = System.getenv("PORT");
+        int port = (portStr != null) ? Integer.parseInt(portStr) : 9090;
+        HttpServer server= HttpServer.create(new InetSocketAddress(port),0);
+        server.createContext("/user",new userController());
+        server.start();
+        System.out.println("Server started on port " + port);
     }
 }

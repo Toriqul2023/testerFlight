@@ -31,7 +31,5 @@ public class userController implements HttpHandler {
         operation.write(response.getBytes());
         operation.close();
 
-
-
     }
 }

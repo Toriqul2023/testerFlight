@@ -1,3 +1,4 @@
+import Controller.flightController;
 import Controller.userController;
 
 import com.sun.net.httpserver.HttpServer;
@@ -9,13 +10,17 @@ import java.net.InetSocketAddress;
 
 
 
-public class Main {
+public class
+Main {
 
     public static void main(String[] args) throws IOException {
         String portStr = System.getenv("PORT");
         int port = (portStr != null) ? Integer.parseInt(portStr) : 9090;
         HttpServer server= HttpServer.create(new InetSocketAddress(port),0);
+
         server.createContext("/user",new userController());
+        server.createContext("/flight",new flightController());
+
         server.start();
         System.out.println("Server started on port " + port);
     }

@@ -9,10 +9,11 @@
   },
   {
     "id": 2,
-    "name": "Boeing 787",
-    "from": "Dhaka",
+    "name": "Boeing 470",
+    "from": "America",
     "to": "UAE",
     "date": "12 Jan 2027",
     "time": "11:00PM"
   }
+
 ]

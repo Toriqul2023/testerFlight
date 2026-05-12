@@ -17,7 +17,7 @@ public  class User extends CommonInFlight_User{
 
     }
     public User(String name,String email,String password,String phone,int age){
-        super(name);
+        this.name=name;
         this.email=email;
         this.password=password;
         this.phone=phone;
@@ -29,13 +29,13 @@ public  class User extends CommonInFlight_User{
         this.password=password;
     }
      public User(String name,String email,String password){
-        super(name);
+        this.name=name;
         this.email=email;
         this.password=password;
 
      }
     public User(String name,String email,String phone,int age){
-        super(name);
+        this.name=name;
         this.email=email;
         this.phone=phone;
         this.age=age;
@@ -43,7 +43,7 @@ public  class User extends CommonInFlight_User{
     }
     public String getName(){
 
-        return super.name;
+        return this.name;
     }
     public String getEmail(){
         return this.email;

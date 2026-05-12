@@ -8,7 +8,8 @@ public class Flight extends CommonInFlight_User{
     private String time;
 
    public  Flight(int id,String name,String from,String to,String date,String time){
-      super(name,id);
+      this.name=name;
+      this.id=id;
        this.from=from;
        this.to=to;
        this.date=date;

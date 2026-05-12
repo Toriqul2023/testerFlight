@@ -1,13 +1,19 @@
 package Controller;
 
+import Model.Flight;
 import Model.User;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.*;
+import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-public class userController implements HttpHandler {
+public class userController implements HttpHandler  {
  public void sendingData(HttpExchange exchange,int statusCode,String response){
      try{
          exchange.sendResponseHeaders(statusCode,response.getBytes().length);
@@ -26,26 +32,27 @@ public class userController implements HttpHandler {
         String method= exchange.getRequestMethod();
 
 
-            Gson gson = new Gson();
-          User[] users=gson.fromJson(new FileReader("src/main/resources/user.json")
-                  ,User[].class);
+        Gson gson = new Gson();
+        User[] users=gson.fromJson(new FileReader("src/main/resources/user.json")
+                ,User[].class);
 
 
 
 
 
-          if(method.equals("GET")){
-              String response=gson.toJson(users);
-              sendingData(exchange,200,response);
+        if(method.equals("GET")){
+            String response=gson.toJson(users);
+            sendingData(exchange,200,response);
 
-          }
-          else if(method.equals("POST")){
-              InputStream operation=exchange.getRequestBody();
-              System.out.println(operation);
-              String response=new String(operation.readAllBytes());
-              System.out.println(response);
+        }
+        else if(method.equals("POST")){
+            InputStream is=exchange.getRequestBody();
+            User newUser = gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), User.class);
 
-          }
+            new loginRegHandle().hadnleReg(newUser,users);
 
+            String response="New User created";
+            sendingData(exchange,200,response);
+        }
     }
 }

@@ -1,28 +1,21 @@
 package Model;
 
-public class Flight {
-    private int id;
-    private String name;
+public class Flight extends CommonInFlight_User{
+
     private String from;
     private String to;
     private String date;
     private String time;
 
    public  Flight(int id,String name,String from,String to,String date,String time){
-       this.id=id;
-       this.name=name;
+      super(name,id);
        this.from=from;
        this.to=to;
        this.date=date;
        this.time=time;
 
    }
-   public String getName(){
-       return this.name;
-   }
-    public String getFrom(){
-        return this.from;
-    }
+
     public String getTo(){
         return this.to;
     }

@@ -44,7 +44,6 @@ public class flightController implements HttpHandler  {
         String method=exchange.getRequestMethod();
         exchange.getResponseHeaders().set("Content-Type","application/json");
 
-
         String path= exchange.getRequestURI().getPath();
         String[] dynamicPath=path.split("/");
 
@@ -53,9 +52,6 @@ public class flightController implements HttpHandler  {
             sendingData(exchange,200,response);
             
         }
-
-       
-
 
         if(method.equals("GET") && isNUmericalValue(dynamicPath[2])){
             String response = "";

@@ -1,8 +1,7 @@
 package Model;
 
-public  class User {
-    private int id;
-    private String name;
+public  class User extends CommonInFlight_User{
+
     private String email;
     private String phone;
     private String password;
@@ -10,8 +9,7 @@ public  class User {
 
     public User(){}
     public User(int id,String name,String email,String password,String phone,int age){
-        this.id=id;
-        this.name=name;
+        super(name,id);
         this.email=email;
         this.password=password;
         this.phone=phone;
@@ -19,7 +17,7 @@ public  class User {
 
     }
     public User(String name,String email,String password,String phone,int age){
-        this.name=name;
+        super(name);
         this.email=email;
         this.password=password;
         this.phone=phone;
@@ -31,31 +29,35 @@ public  class User {
         this.password=password;
     }
      public User(String name,String email,String password){
-        this.name=name;
+        super(name);
         this.email=email;
         this.password=password;
 
      }
     public User(String name,String email,String phone,int age){
-        this.name=name;
+        super(name);
         this.email=email;
         this.phone=phone;
         this.age=age;
 
     }
     public String getName(){
-        return this.name;
+
+        return super.name;
     }
     public String getEmail(){
         return this.email;
     }
     public String getPhone(){
+
         return this.phone;
     }
     public String getPassword(){
+
         return this.password;
     }
     public int getAge(){
+
         return this.age;
     }
 

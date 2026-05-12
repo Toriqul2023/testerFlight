@@ -5,10 +5,7 @@ import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 
 public class userController implements HttpHandler {
  public void sendingData(HttpExchange exchange,int statusCode,String response){
@@ -40,6 +37,13 @@ public class userController implements HttpHandler {
           if(method.equals("GET")){
               String response=gson.toJson(users);
               sendingData(exchange,200,response);
+
+          }
+          else if(method.equals("POST")){
+              InputStream operation=exchange.getRequestBody();
+              System.out.println(operation);
+              String response=new String(operation.readAllBytes());
+              System.out.println(response);
 
           }
 

@@ -37,16 +37,23 @@ public class flightController implements HttpHandler  {
 
     public void handle(HttpExchange exchange) throws IOException {
 
+        exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+        exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type");
+        exchange.getResponseHeaders().set("Content-Type", "application/json");
 
         Gson gson= new Gson();
         Flight[] flights=gson.fromJson(new FileReader("src/main/resources/flight.json")
                 , Flight[].class);
         String method=exchange.getRequestMethod();
+
         exchange.getResponseHeaders().set("Content-Type","application/json");
 
         String path= exchange.getRequestURI().getPath();
         String[] dynamicPath=path.split("/");
-
+String url=exchange.getRequestURI().getQuery();
+        String url2=exchange.getRequestURI().toString();
+        System.out.println(url+url2);
         if(method.equals("GET") && path.equals("/flight")){
             String response=gson.toJson(flights);
             sendingData(exchange,200,response);

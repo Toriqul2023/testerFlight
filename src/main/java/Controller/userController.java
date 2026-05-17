@@ -28,31 +28,45 @@ public class userController implements HttpHandler  {
  }
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        exchange.getResponseHeaders().set("Content-Type","application/json");
-        String method= exchange.getRequestMethod();
+        exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+        exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type");
+        exchange.getResponseHeaders().set("Content-Type", "application/json");
 
+
+
+        String method= exchange.getRequestMethod();
+        if (method.equalsIgnoreCase("OPTIONS")) {
+            exchange.sendResponseHeaders(204, -1); // No content
+            return;
+        }
 
         Gson gson = new Gson();
+
         User[] users=gson.fromJson(new FileReader("src/main/resources/user.json")
                 ,User[].class);
-
-
-
-
 
         if(method.equals("GET")){
             String response=gson.toJson(users);
             sendingData(exchange,200,response);
 
         }
-        else if(method.equals("POST")){
-            InputStream is=exchange.getRequestBody();
-            User newUser = gson.fromJson(new InputStreamReader(is, StandardCharsets.UTF_8), User.class);
+         if(method.equals("POST")){
+            InputStream is= exchange.getRequestBody();
+             System.out.println(is);
+            User newUser=gson.fromJson(new InputStreamReader(is,StandardCharsets.UTF_8),User.class);
+            try {
+                System.out.println(newUser.getName());
+                new loginRegHandle().hadnleReg(newUser,users);
+                String response="Data handled Successfully";
+                sendingData(exchange,200,response);
+            } catch (IOException e) {
 
-            new loginRegHandle().hadnleReg(newUser,users);
+                String response="Something Wrong";
+                sendingData(exchange,500,response);
+            }
 
-            String response="New User created";
-            sendingData(exchange,200,response);
+
         }
     }
 }

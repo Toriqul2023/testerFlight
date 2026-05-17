@@ -13,19 +13,15 @@ public class loginRegHandle {
     Gson gson =new Gson();
     private User user;
 
-    public User hadnleReg(User newuser,User[] oldUsers) {
-        try {
+    public  User hadnleReg(User newuser,User[] oldUsers) throws IOException {
+
             User[] newUsers= Arrays.copyOf(oldUsers,oldUsers.length+1);
             newUsers[newUsers.length-1]=newuser;
             FileWriter file=new FileWriter("src/main/resources/user.json");
             file.write(gson.toJson(newUsers));
             file.close();
 
-        }
-        catch (IOException e) {
-            System.out.println(e);
-        }
-       return user;
+       return newuser;
     }
     public void handleLogIn(int id,String password) throws IOException{
         User[] users=gson.fromJson(

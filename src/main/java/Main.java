@@ -1,3 +1,4 @@
+import Controller.bookingController;
 import Controller.flightController;
 import Controller.userController;
 
@@ -20,7 +21,9 @@ Main {
         HttpServer server= HttpServer.create(new InetSocketAddress(port),0);
 
         server.createContext("/user",new userController());
+
         server.createContext("/flight",new flightController());
+        server.createContext("/booking",new bookingController());
 
         server.start();
         System.out.println("Server started on port " + port);

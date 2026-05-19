@@ -2,9 +2,9 @@ package Model;
 
 public abstract class CommonInFlight_User {
     protected String name;
-    protected int id;
+    protected String id;
     public CommonInFlight_User(){};
-    public CommonInFlight_User(String name,int id){
+    public CommonInFlight_User(String name,String id){
             this.name = name;
             this.id=id;
     }
@@ -16,13 +16,13 @@ public abstract class CommonInFlight_User {
     public String getName(){
         return name;
     }
-    public int getId(){
+    public String getId(){
         return id;
     }
-    public void setname(String name){
+    public void setName(String name){
         this.name=name;
     }
-    public void seId(int id){
+    public void setId(String id){
         this.id=id;
     }
 

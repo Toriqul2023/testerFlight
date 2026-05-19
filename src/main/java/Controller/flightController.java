@@ -57,21 +57,10 @@ String url=exchange.getRequestURI().getQuery();
         if(method.equals("GET") && path.equals("/flight")){
             String response=gson.toJson(flights);
             sendingData(exchange,200,response);
-            
-        }
-
-        if(method.equals("GET") && isNUmericalValue(dynamicPath[2])){
-            String response = "";
-            for (Flight flight : flights) {
-              if(flight.getId()==Integer.parseInt(dynamicPath[2])){
-                  response=gson.toJson(flight);
-                  break;
-              }
-            }
-            sendingData(exchange,200,response);
-
 
         }
+
+
 
     }
 

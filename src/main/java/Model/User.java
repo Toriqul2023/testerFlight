@@ -8,7 +8,7 @@ public  class User extends CommonInFlight_User{
     private int age;
 
     public User(){}
-    public User(int id,String name,String email,String password,String phone,int age){
+    public User(String id,String name,String email,String password,String phone,int age){
         super(name,id);
         this.email=email;
         this.password=password;

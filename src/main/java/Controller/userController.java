@@ -42,11 +42,15 @@ public class userController implements HttpHandler  {
         }
 
         Gson gson = new Gson();
+        Type type=new TypeToken<ArrayList<User>>(){}.getType();
+        ArrayList<User> users=gson.fromJson(new
+                FileReader("src/main/resources/user.json"),type);
 
-        User[] users=gson.fromJson(new FileReader("src/main/resources/user.json")
-                ,User[].class);
-
+        if(users==null) {
+            users= new ArrayList<>();
+        }
         if(method.equals("GET")){
+
             String response=gson.toJson(users);
             sendingData(exchange,200,response);
 
@@ -58,7 +62,7 @@ public class userController implements HttpHandler  {
             try {
                 System.out.println(newUser.getName());
                 new loginRegHandle().hadnleReg(newUser,users);
-                String response="Data handled Successfully";
+                String response= gson.toJson(newUser);
                 sendingData(exchange,200,response);
             } catch (IOException e) {
 

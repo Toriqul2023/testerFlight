@@ -1,17 +1,39 @@
 package Model;
 
 public class Booking {
-    private int id;
-    private String date;
-    private int userId;
-    private int flightId;
+    private String id;
+
+    private String userId;
+    private String seat;
+
+    private String flightId;
+
+public Booking(){}
+
+    public Booking(String id, String userId, String flightId, String seat) {
+        this.id = id;
+
+        this.userId = userId;
+        this.flightId = flightId;
+        this.seat = seat;
+
+    }
+    public String getId(){
+        return id;
+    }
 
 
-    public Booking(int id,String date,int userId,int flightid){
+    public String getUserId(){
+        return userId;
+    }
+    public String getFlightId(){
+        return flightId;
+    }
+    public String getSeat(){
+        return seat;
+    }
+
+    public void setId(String id){
         this.id=id;
-        this.date=date;
-        this.flightId=flightid;
-        this.userId=userId;
-
     }
 }

@@ -8,7 +8,7 @@ public class Flight extends CommonInFlight_User{
     private String time;
     private int price;
 
-   public  Flight(int id,String name,int price,String from,String to,String date,String time){
+   public  Flight(String id,String name,int price,String from,String to,String date,String time){
        this.name=name;
        this.id=id;
        this.price=price;
@@ -18,6 +18,7 @@ public class Flight extends CommonInFlight_User{
        this.time=time;
 
    }
+
 
     public String getTo(){
         return this.to;
@@ -29,9 +30,6 @@ public class Flight extends CommonInFlight_User{
         return this.time;
     }
     public int getPrice(){return this.price;}
-    public int getId(){
-       return this.id;
-    }
 
 
 

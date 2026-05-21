@@ -12,5 +12,6 @@ FROM eclipse-temurin:17-jdk
 WORKDIR /app
 # Use the executable jar we configured in pom.xml
 COPY --from=build /app/target/*-jar-with-dependencies.jar app.jar
+COPY --from=build /app/src src
 EXPOSE 9090
 ENTRYPOINT ["java", "-jar", "app.jar"]

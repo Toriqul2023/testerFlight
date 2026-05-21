@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.CommonInFlight_User;
 import Model.User;
 import com.google.gson.Gson;
 
@@ -15,7 +16,7 @@ public class loginRegHandle {
     Gson gson =new Gson();
     private User user;
 
-    public  User hadnleReg(User newuser, ArrayList<User> users) throws IOException {
+    public  User handleReg(User newuser, ArrayList<User> users) throws IOException {
         String id=UUID.randomUUID().toString();
         newuser.setId(id);
         System.out.println(id);
@@ -26,6 +27,21 @@ public class loginRegHandle {
             file.close();
 
        return newuser;
+    }
+    public  User handleLogin(User newUser, ArrayList<User> users) throws IOException{
+        User matchUser=null;
+        for(User u:users){
+            if(u.getEmail().equals(newUser.getEmail()) && u.getPassword().equals(newUser.getPassword())){
+                matchUser=u;
+                break;
+            }
+
+
+        }
+
+            return matchUser;
+
+
     }
 
 }

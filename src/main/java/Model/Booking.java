@@ -18,6 +18,12 @@ public Booking(){}
         this.seat = seat;
 
     }
+    public Booking( String userId, String flightId, String seat) {
+        this.userId = userId;
+        this.flightId = flightId;
+        this.seat = seat;
+
+    }
     public String getId(){
         return id;
     }

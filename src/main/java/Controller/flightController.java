@@ -50,10 +50,8 @@ public class flightController implements HttpHandler  {
         exchange.getResponseHeaders().set("Content-Type","application/json");
 
         String path= exchange.getRequestURI().getPath();
-        String[] dynamicPath=path.split("/");
-String url=exchange.getRequestURI().getQuery();
-        String url2=exchange.getRequestURI().toString();
-        System.out.println(url+url2);
+
+
         if(method.equals("GET") && path.equals("/flight")){
             String response=gson.toJson(flights);
             sendingData(exchange,200,response);

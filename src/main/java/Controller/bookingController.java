@@ -15,7 +15,7 @@ import java.util.UUID;
 
 public class bookingController implements HttpHandler {
     Gson gson=new Gson();
-    public void sendingResponse(HttpExchange exchange,int status,String response) throws IOException{
+    public void sendingResponse(HttpExchange exchange,int status,String response) throws IOException {
         exchange.sendResponseHeaders(status,response.getBytes().length);
         OutputStream operation=exchange.getResponseBody();
         operation.write(response.getBytes());
@@ -31,7 +31,7 @@ public class bookingController implements HttpHandler {
 
         return booking;
     }
-    public void handle(HttpExchange exchange) throws IOException {
+    public void handle(HttpExchange exchange) throws IOException{
         exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
         exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type");

@@ -43,7 +43,7 @@ public class userController implements HttpHandler  {
             return;
         }
         String path=exchange.getRequestURI().getPath();
-        System.out.println(path);
+
         Gson gson = new Gson();
         Type type=new TypeToken<ArrayList<User>>(){}.getType();
         ArrayList<User> users=gson.fromJson(new
@@ -98,8 +98,7 @@ public class userController implements HttpHandler  {
                     }
                 }
                 if(matchUser!=null) {
-                    String response="Already have an account";
-                    sendingData(exchange,201,response);
+                  throw new IOException("Already have an account");
 
                 }
                 else{
@@ -111,8 +110,8 @@ public class userController implements HttpHandler  {
 
             } catch (IOException e) {
 
-                String response="Something Wrong";
-                sendingData(exchange,500,response);
+
+                sendingData(exchange,500,e.getMessage());
             }
 
 

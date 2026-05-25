@@ -24,16 +24,6 @@ public class flightController implements HttpHandler  {
         }
 
     }
-    public boolean isNUmericalValue(String s){
-        try{
-            Integer.parseInt(s);
-            return true;
-        }
-        catch(NumberFormatException e){
-            return false;
-        }
-
-    }
 
     public void handle(HttpExchange exchange) throws IOException {
 

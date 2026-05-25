@@ -40,7 +40,7 @@ public class bookingController implements HttpHandler {
 
 
         String method= exchange.getRequestMethod();
-        String path= exchange.getRequestURI().toString();
+
 
         if (method.equalsIgnoreCase("OPTIONS")) {
             exchange.sendResponseHeaders(204, -1);
@@ -52,9 +52,34 @@ public class bookingController implements HttpHandler {
         if(bookings==null){
             bookings=new ArrayList<Booking>();
         }
-        if(method.equals("GET") && path.equals("/bookings")){
-            String response=gson.toJson(bookings);
-            sendingResponse(exchange,200,response);
+        if (method.equalsIgnoreCase("GET")) {
+            String path = exchange.getRequestURI().getPath();
+            String query = exchange.getRequestURI().getQuery();
+
+            if (path.equals("/booking")) {
+
+                if (query != null && query.startsWith("userId=")) {
+                    String targetedUserId = query.split("=")[1];
+
+                    ArrayList<Booking> filteredBookings = new ArrayList<>();
+                    for (Booking b : bookings) {
+
+                        if (b.getUserId() != null && b.getUserId().equals(targetedUserId)) {
+                            filteredBookings.add(b);
+                        }
+                    }
+
+                    String response = gson.toJson(filteredBookings);
+                    sendingResponse(exchange, 200, response);
+                }
+
+                else {
+                    String response = gson.toJson(bookings);
+                    sendingResponse(exchange, 200, response);
+                }
+            } else {
+                sendingResponse(exchange, 404, "Not Found");
+            }
         }
         else if(method.equals("POST")){
             InputStream is=exchange.getRequestBody();

@@ -3,7 +3,7 @@ import Controller.flightController;
 import Controller.userController;
 
 import com.sun.net.httpserver.HttpServer;
-import config.MongoDb;
+
 
 import java.io.IOException;
 
@@ -27,6 +27,6 @@ Main {
 
         server.start();
         System.out.println("Server started on port " + port);
-        MongoDb.run();
+
     }
 }

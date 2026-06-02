@@ -63,7 +63,7 @@ public class userController implements HttpHandler  {
            InputStream inputStream=exchange.getRequestBody();
            User user=gson.fromJson(new InputStreamReader(inputStream),User.class);
            try{
-               User matchUser=new loginRegHandle().handleLogin(user,users);
+               User matchUser=new loginRegHandle().userIdentify(user.getEmail(),user.getPassword());
                if(matchUser!=null) {
                    String response=gson.toJson(matchUser);
                    sendingData(exchange,200,response);
@@ -91,12 +91,7 @@ public class userController implements HttpHandler  {
              User matchUser = null;
 
             try {
-                for(User user:users) {
-                    if (user.getEmail().equals(newUser.getEmail())) {
-                        matchUser = user;
-                        break;
-                    }
-                }
+              matchUser= new loginRegHandle().userIdentify(newUser.getEmail());
                 if(matchUser!=null) {
                   throw new IOException("Already have an account");
 

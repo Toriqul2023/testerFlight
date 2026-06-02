@@ -1,19 +1,19 @@
 package Controller;
 
-import Model.Booking;
-import Model.Flight;
+
 import Model.User;
 import com.google.gson.Gson;
-import com.google.gson.internal.bind.util.ISO8601Utils;
+
 import com.google.gson.reflect.TypeToken;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import jdk.jshell.spi.ExecutionControl;
 
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class userController implements HttpHandler  {
  public void sendingData(HttpExchange exchange,int statusCode,String response){
@@ -69,10 +69,10 @@ public class userController implements HttpHandler  {
                    sendingData(exchange,200,response);
                }
                else{
-                   throw new Exception("Email or password is incorrect");
+                   throw new UserException("Email or password is incorrect");
                }
            }
-           catch (Exception e){
+           catch (UserException e){
                 String response=gson.toJson(e.getMessage());
                sendingData(exchange,400, response);
 
@@ -93,7 +93,7 @@ public class userController implements HttpHandler  {
             try {
               matchUser= new loginRegHandle().userIdentify(newUser.getEmail());
                 if(matchUser!=null) {
-                  throw new IOException("Already have an account");
+                 throw new UserException("Already have an account");
 
                 }
                 else{
@@ -103,7 +103,7 @@ public class userController implements HttpHandler  {
                     sendingData(exchange,200,response);
                 }
 
-            } catch (IOException e) {
+            } catch (UserException e) {
 
 
                 sendingData(exchange,500,e.getMessage());
